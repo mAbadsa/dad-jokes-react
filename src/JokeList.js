@@ -11,13 +11,17 @@ class JokeList extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      jokes: [],
+      jokes: JSON.parse(localStorage.getItem("jokes")) || [],
       isLoading: false
     };
     this.handleVote = this.handleVote.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    if (this.state.jokes.length === 0) this.getJokes();
+  }
+
+  async getJokes() {
     const JOKES_URL = "https://icanhazdadjoke.com/";
     const jokes = [];
     while (jokes.length < this.props.numJokesToGet) {
@@ -26,19 +30,11 @@ class JokeList extends Component {
       });
       jokes.push({ joke: res.data.joke, votes: 0, id: uuid() });
     }
-    if (jokes.length !== 10) {
-      console.log("1", jokes.length);
-      console.log(this.state.isLoading);
-      this.setState((prevProps, prevState) => ({
-        isLoading: !prevState.isLoading
-      }));
-    } else {
-      console.log("2", jokes.length);
-      this.setState(st => ({
-        jokes: [...st.jokes, ...jokes]
-      }));
-    }
-    console.log(jokes);
+    this.setState(st => ({
+      jokes: [...st.jokes, ...jokes]
+    }));
+    window.localStorage.setItem("jokes", JSON.stringify(jokes));
+    console.log(this.state.jokes);
   }
 
   handleVote(id, delta) {
