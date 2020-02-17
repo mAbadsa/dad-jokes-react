@@ -1,0 +1,8 @@
+.Joke {
+    display: flex;
+}
+
+.Joke-buttons {
+    width: 8%;
+    text-align: center;
+}
