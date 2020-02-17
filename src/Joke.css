@@ -32,6 +32,7 @@
     margin: 0.2rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3),
     0 4px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s;
 }
 
 .fa-arrow-up, .fa-arrow-down {
@@ -53,6 +54,6 @@
     font-size: 2rem;
     margin-left: auto;
     border-radius: 50%;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3),
+    box-shadow: 0 5px 38px rgba(0, 0, 0, 0.3),
     0 4px 4px rgba(0, 0, 0, 0.1);
 }
