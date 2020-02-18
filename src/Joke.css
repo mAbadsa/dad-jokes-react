@@ -31,7 +31,7 @@
     text-align: center;
     margin: 0.2rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3),
-    0 4px 4px rgba(0, 0, 0, 0.1);
+    0 4px 4px rgba(0, 0, 0, 0.1), inset 0 0 25px #4949492a, inset 0 0 5px 2px #47474736;
     transition: border-color 0.3s;
 }
 
@@ -39,15 +39,33 @@
     font-size: 1.2rem;
     cursor: pointer;
     margin: 2px;
-    transition: 0.2s;
+    transition: all 0.2s;
 }
 
-.fa-arrow-up:hover, .fa-arrow-down:hover {
+.fa-arrow-up:hover{
     transform-origin: center;
-    transform: scale(1.1);
-    transition: 0.2s;
-    color: lime;
+    transition: all 0.2s;
+    color: rgb(28, 212, 59);
+    text-shadow: 0 0px 10px rgb(58, 235, 80);
     filter: blur(0.5px);
+    animation-name: moving-up;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function: linear;
+}
+
+.fa-arrow-down:hover {
+    transform-origin: center;
+    transition: all 0.2s;
+    color: rgb(212, 28, 59);
+    text-shadow: 0 0px 10px rgb(252, 58, 89);
+    filter: blur(0.5px);
+    animation-name: moving-down;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function: linear;
 }
 
 .Joke-smiley {
@@ -56,4 +74,48 @@
     border-radius: 50%;
     box-shadow: 0 5px 38px rgba(0, 0, 0, 0.3),
     0 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.Joke-smiley:hover{
+    animation-name: spin;
+    animation-duration: 0.7s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate-reverse;
+    animation-iteration-count: infinite;
+}
+
+@keyframes moving-up {
+    0%,50%,100% {
+        transform: translateY(0);
+    }
+    25%,75% {
+        transform: translateY(-3px);
+    }
+}
+
+@keyframes moving-down {
+    0%,50%,100% {
+        transform: translateY(0);
+    }
+    25%,75% {
+        transform: translateY(3px);
+    }
+}
+
+@keyframes spin {
+    0%{
+        transform: rotate(0deg);
+    }
+    30%{
+        transform: rotate(20deg);
+    }
+    60%{
+        transform: rotate(0deg);
+    }
+    80%{
+        transform: rotate(10deg);
+    }
+    1000%{
+        transform: rotate(0deg);
+    }
 }
