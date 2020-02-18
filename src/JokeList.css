@@ -47,3 +47,7 @@
     0 15px 12px rgba(0, 0, 0, 0.1);
 }
 
+.JokeList-spinner {
+    color: rgb(28, 180, 66);
+    text-align: center;
+}
