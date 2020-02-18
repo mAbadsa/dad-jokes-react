@@ -15,6 +15,7 @@ class JokeList extends Component {
       isLoading: false
     };
     this.handleVote = this.handleVote.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -32,9 +33,9 @@ class JokeList extends Component {
     }
     this.setState(st => ({
       jokes: [...st.jokes, ...jokes]
-    }));
-    window.localStorage.setItem("jokes", JSON.stringify(jokes));
-    console.log(this.state.jokes);
+    }),
+      () => window.localStorage.setItem("jokes", JSON.stringify(this.state.jokes))
+    );
   }
 
   handleVote(id, delta) {
@@ -42,7 +43,13 @@ class JokeList extends Component {
       jokes: st.jokes.map(joke =>
         joke.id === id ? { ...joke, votes: joke.votes + delta } : joke
       )
-    }));
+    }),
+      () => window.localStorage.setItem('jokes', JSON.stringify(this.state.jokes))
+    );
+  }
+
+  handleClick() {
+    this.getJokes();
   }
 
   render() {
@@ -65,7 +72,7 @@ class JokeList extends Component {
             src="https://assets.dryicons.com/uploads/icon/preview/8927/small_1x_d07b14ae-d290-4913-83e1-01f345289349.png"
             alt="emoji"
           />
-          <button className="JokeList-getmore">New Jokes</button>
+          <button className="JokeList-getmore" onClick={this.handleClick}>New Jokes</button>
         </div>
         <div className="JokeList-jokes">{jokeList}</div>
       </div>
