@@ -72,7 +72,10 @@ class JokeList extends Component {
   }
 
   render() {
-    const jokeList = this.state.jokes.map(joke => (
+
+    let sortJokes = this.state.jokes.sort((a, b) => b.votes - a.votes);
+
+    const jokeList = sortJokes.map(joke => (
       <Joke
         key={joke.id}
         joke={joke.joke}
